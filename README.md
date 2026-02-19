@@ -13,7 +13,7 @@ Per tal de realitzar aquesta practica correctament, s'han de tenir com a mínim 
 
 Crearem una carpeta anomenada **projecte_wordpress** i dins d'aquesta l'arxiu **docker-compose.yml**, on afegirem els contenidors per a **WordPress** i **MariaDB** amb els seus respectius volums:
 
-<img width="200" alt="docker-compose" src="https://github.com/user-attachments/assets/17ba7307-f132-49b1-a239-618d85008f94" />
+<img width="313" height="523" alt="docker-compose" src="https://github.com/user-attachments/assets/17ba7307-f132-49b1-a239-618d85008f94" />
 <br><br>
 
 Després d'executar **docker-compose up -d**, ja podrem accedir a **WordPress** des del navegador web inserint **192.168.32.169:8080**.
@@ -89,4 +89,4 @@ Gràcies a l'arxiu **migrador.html**, realitzarem les següents accions automàt
 <br>
 
 ## 5. Resultat Final
-<img width="700" alt="pagina-inici" src="https://github.com/user-attachments/assets/541bf6e8-644c-444f-adf6-b3d216286644" />
+<img width="450" alt="pagina-inici" src="https://github.com/user-attachments/assets/541bf6e8-644c-444f-adf6-b3d216286644" />
