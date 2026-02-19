@@ -17,6 +17,7 @@ Crearem una carpeta anomenada **projecte_wordpress** i dins d'aquesta l'arxiu **
 <br><br>
 
 Després d'executar **docker-compose up -d**, ja podrem accedir a **WordPress** des del navegador web inserint **192.168.32.169:8080**.
+
 <br><br>
 
 ## 2. Configuració de WordPress
@@ -57,6 +58,7 @@ Dins d'aquest, inserirem les línies de configuració de **JWT** just abans del 
 <br><br>
 
 Amb aquesta configuració bàsica, ja haurem deixat WordPress llest per rebre peticions externes mitjançant **WP REST API**
+
 <br><br>
 
 ## 3. Connexió amb Fetch API
