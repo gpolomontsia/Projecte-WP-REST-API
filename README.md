@@ -14,7 +14,7 @@ Per tal de realitzar aquesta practica correctament, s'han de tenir com a mínim 
 Crearem una carpeta anomenada **projecte_wordpress** i dins d'aquesta l'arxiu **docker-compose.yml**, on afegirem els contenidors per a **WordPress** i **MariaDB** amb els seus respectius volums:
 
 <img width="313" height="523" alt="docker-compose" src="https://github.com/user-attachments/assets/17ba7307-f132-49b1-a239-618d85008f94" />
-<br><br><br>
+<br><br>
 
 Després d'executar **docker-compose up -d**, ja podrem accedir a **WordPress** des del navegador web inserint **192.168.32.169:8080**.
 <br><br>
@@ -23,7 +23,7 @@ Després d'executar **docker-compose up -d**, ja podrem accedir a **WordPress** 
 
 Dins del panell d'administració de **WordPress**, crearem un usuari amb **Perfil Editor** amb el que ens autenticarem posteriorment:
 <img width="809" height="134" alt="usuari-editor" src="https://github.com/user-attachments/assets/a29ea406-015b-45b8-884d-7b28b56cb2c8" />
-
+<br><br>
 
 Per configurar els arxius de WordPress des d'interfície gràfica, instal·larem el plugin **File Manager** (opcional):
 
@@ -56,9 +56,11 @@ Amb aquesta configuració bàsica, ja haurem deixat WordPress llest per rebre pe
 ## 3. Connexió amb Fetch API
 
 Utilitzarem el codi de l'arxiu **get-posts.html** proporcionat dins del repositori per comprovar que **WordPress** accepta peticions externes:
+
 <img width="751" height="535" alt="get-posts" src="https://github.com/user-attachments/assets/d18cf527-2bde-48ea-aff6-277b71365415" />
 
 Si la prova anterior ha funcionat correctament, utilitzarem el codi de l'arxiu **login-and-post.html** per obtenir el token de l'usuari **editor1** i crear un post:
+
 <img width="800" height="931" alt="login-and-post" src="https://github.com/user-attachments/assets/33173960-3345-4ba3-af3f-8d21bb9a9b5e" />
 
 
