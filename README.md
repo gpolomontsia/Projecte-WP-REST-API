@@ -1,11 +1,18 @@
 # Projecte SPRINT2 - Migració a WordPress
 
-Aquesta és una guia pràctica per realitzar el procés de migració del projecte SPRINT1 (fet amb codi vanilla) a un WordPress dockeritzat dins d'un Ubuntu Server.
+Aquesta és una guia pràctica per realitzar el procés de migració del projecte SPRINT1 (fet amb codi vanilla) a un WordPress dockeritzat dins d'un Ubuntu Server mitjançant JavaScript i WP REST API.
 
 ## Requisits Previs
 
+Per tal de realitzar aquesta practica correctament, s'han de tenir com a mínim els següents requisits previs:
+* Màquina virtual Ubuntu Server (24.04 LTS preferiblement) accessible des de la xarxa (en aquest cas, des de 192.168.32.129).
+* Servei **Docker.io** (paquet lleuger de docker) instal·lat amb **docker-compose**.
+* Ganes d'aprendre i calentar-se el cap programant JS sense utilitzar Gemini Pro.
+
 ## 1. Desplegament amb Docker
-<img width="313" height="523" alt="docker-compose" src="https://github.com/user-attachments/assets/ae3d3ce9-9667-49a5-a3ae-10afa5083b90" />
+
+Crearem una carpeta anomenada **projecte_wordpress** i dins d'aquesta l'arxiu **docker-compose.yml**, on afegirem els contenidors per a **WordPress** i **MariaDB** amb els seus respectius volums:
+<img width="313" height="523" alt="docker-compose" src="https://github.com/user-attachments/assets/docker-compose" />
 
 ## 2. Configuració de WordPress
 <img width="825" height="320" alt="plugin-jwt" src="https://github.com/user-attachments/assets/d9584439-104d-4a85-b8c5-c77d3e1e011f" />
