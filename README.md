@@ -12,7 +12,9 @@ Per tal de realitzar aquesta practica correctament, s'han de tenir com a mínim 
 ## 1. Desplegament amb Docker
 
 Crearem una carpeta anomenada **projecte_wordpress** i dins d'aquesta l'arxiu **docker-compose.yml**, on afegirem els contenidors per a **WordPress** i **MariaDB** amb els seus respectius volums:
-<img width="313" height="523" alt="docker-compose" src="https://github.com/user-attachments/assets/docker-compose" />
+<img width="313" height="523" alt="docker-compose" src="https://github.com/user-attachments/assets/17ba7307-f132-49b1-a239-618d85008f94" />
+
+Després d'executar **docker-compose up -d**, ja podrem accedir a **WordPress** des del navegador web inserint **192.168.32.169:8080**.
 
 ## 2. Configuració de WordPress
 <img width="825" height="320" alt="plugin-jwt" src="https://github.com/user-attachments/assets/d9584439-104d-4a85-b8c5-c77d3e1e011f" />
