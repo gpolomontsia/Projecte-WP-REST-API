@@ -105,12 +105,12 @@ Finalment, podrem comprovar que s'han migrat totes les pàgines amb els estils c
 
 Exemple pàgina **Inici**:
 
-<img width="450" alt="pagina-inici" src="https://github.com/user-attachments/assets/541bf6e8-644c-444f-adf6-b3d216286644" />
+<img width="600" alt="pagina-inici" src="https://github.com/user-attachments/assets/541bf6e8-644c-444f-adf6-b3d216286644" />
 <br><br>
 
 Exemple pàgina **Intranet**:
 
-<img width="450" alt="intranet" src="https://github.com/user-attachments/assets/6e0dbbd3-aca2-40ec-9c5b-444ab1e12862" />
+<img width="600" alt="intranet" src="https://github.com/user-attachments/assets/6e0dbbd3-aca2-40ec-9c5b-444ab1e12862" />
 
 <br><br>
 
@@ -118,10 +118,10 @@ Exemple pàgina **Intranet**:
 
 ## Conclusions i Webgrafia
 
-Aquest projecte ha estat confús, entretingut i desesperant a la vegada. 
+Aquest projecte ha estat confús, entretingut i desesperant a la vegada. 
 Encara així, amb l'ajuda dels professors i de gemini.google.com s'ha pogut concloure exitosament.
 Només puc donar les gràcies per tindre l'oportunitat d'aprendre nous coneixements i habilitats de programació.
 
 La documentació que més m'ha ajudat per realitzar les tasques és la següent:
-* https://github.com/llmopt2526/sprint2-wordpress-api-rest/tree/main (Ajudes proporcionades per l'equip docent).
+* https://github.com/llmopt2526/sprint2-wordpress-api-rest/tree/main (Ajudes proporcionades per l'equip docent)
 * https://raiolanetworks.com/blog/api-wordpress/ (Per entendre WP API REST)
