@@ -1,5 +1,6 @@
 # 🚀 Projecte: Montsià 30 - Migració a WordPress
 
+
 ## 📋 Requisits Previs de l'Entorn (Servidor)
 
 Per poder executar aquesta pràctica i utilitzar l'eina de migració correctament, el servidor (màquina virtual) ha de complir els següents requisits:
