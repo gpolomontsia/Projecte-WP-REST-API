@@ -9,7 +9,7 @@ Aquesta és una guia pràctica per realitzar el procés de migració del project
 
 ## 2. Configuració de WordPress
 
-<img width="826" height="321" alt="Captura de pantalla 2026-02-19 141230" src="https://github.com/user-attachments/assets/b0166d70-5f56-4204-b153-f4a36b349cb6" />
+<img width="826" height="321" alt="plugin-file-manager" src="https://github.com/user-attachments/assets/b0166d70-5f56-4204-b153-f4a36b349cb6" />
 
 ## 3. Connexió amb Fetch API
 
