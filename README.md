@@ -8,7 +8,7 @@ Aquesta és una guia pràctica per realitzar el procés de migració del project
 <img width="313" height="523" alt="docker-compose" src="https://github.com/user-attachments/assets/ae3d3ce9-9667-49a5-a3ae-10afa5083b90" />
 
 ## 2. Configuració de WordPress
-
+<img width="825" height="320" alt="plugin-jwt" src="https://github.com/user-attachments/assets/d9584439-104d-4a85-b8c5-c77d3e1e011f" />
 <img width="826" height="321" alt="plugin-file-manager" src="https://github.com/user-attachments/assets/b0166d70-5f56-4204-b153-f4a36b349cb6" />
 <img width="782" height="500" alt="Configuracio-JWT" src="https://github.com/user-attachments/assets/95f902d6-1047-4472-8108-c8a05ed9423a" />
 <img width="878" height="331" alt="explorador-arxius" src="https://github.com/user-attachments/assets/21f87bd5-75a7-4ea6-b002-48dbb6dfc767" />
