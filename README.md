@@ -16,6 +16,7 @@ Crearem una carpeta anomenada **projecte_wordpress** i dins d'aquesta l'arxiu **
 
 <img width="313" height="523" alt="docker-compose" src="https://github.com/user-attachments/assets/17ba7307-f132-49b1-a239-618d85008f94" />
 <br>
+<br>
 
 Després d'executar **docker-compose up -d**, ja podrem accedir a **WordPress** des del navegador web inserint **192.168.32.169:8080**.
 <br>
@@ -27,28 +28,34 @@ Per configurar els arxius de WordPress des d'interfície gràfica, instal·larem
 
 <img width="826" height="321" alt="plugin-file-manager" src="https://github.com/user-attachments/assets/b0166d70-5f56-4204-b153-f4a36b349cb6" />
 <br>
+<br>
 
 Per realitzar l'autenticació de la **WP REST API** mitjançant el mètode **JWT** (JSON Web Tokens), haurem d'instal·lar el plugin **JWT Authentication for WP REST API**:
 
 <img width="825" height="320" alt="plugin-jwt" src="https://github.com/user-attachments/assets/d9584439-104d-4a85-b8c5-c77d3e1e011f" />
+<br>
 <br>
 
 Dins de la configuració d'aquest Plugin, veurem que ens demana afegir dues línies (utilitzant CORS Support) dins de l'arxiu **wp-config.php** per habilitar l'autenticació amb **JWT**:
 
 <img width="782" height="500" alt="Configuracio-JWT" src="https://github.com/user-attachments/assets/95f902d6-1047-4472-8108-c8a05ed9423a" />
 <br>
+<br>
 
 Aprofitarem l'explorador d'arxius instal·lat anteriorment per editar l'arxiu **wp-config.php**:
 
 <img width="878" height="331" alt="explorador-arxius" src="https://github.com/user-attachments/assets/21f87bd5-75a7-4ea6-b002-48dbb6dfc767" />
+<br>
 <br>
 
 Dins d'aquest, inserirem les línies de configuració de **JWT** just abans del comentari _That's all, stop editing!_:
 
 <img width="808" height="555" alt="edicio-wp-config" src="https://github.com/user-attachments/assets/e446de06-f068-4b3a-887d-ca869613cc4d" />
 <br>
+<br>
 
 Amb aquesta configuració bàsica, ja haurem deixat WordPress llest per rebre peticions externes mitjançant **WP REST API**
+<br>
 <br>
 
 ## 3. Connexió amb Fetch API
