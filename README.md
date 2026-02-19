@@ -63,7 +63,7 @@ Utilitzarem el codi de l'arxiu **get-posts.html** proporcionat dins del reposito
 
 Si la prova anterior ha funcionat correctament, utilitzarem el codi de l'arxiu **login-and-post.html** per obtenir el token de l'usuari **editor1** i crear un post:
 
-<img width="800" height="931" alt="login-and-post" src="https://github.com/user-attachments/assets/33173960-3345-4ba3-af3f-8d21bb9a9b5e" />
+<img width="808" height="724" alt="login-and-post" src="https://github.com/user-attachments/assets/e912cd41-7ffa-4f6b-8b67-76f0b6233b16" />
 <br><br>
 
 **Resolució d'errors:** Aquestes proves poden presentar errors d'autenticació o creació de posts:
@@ -76,6 +76,14 @@ Si ambdues proves han resultat exitoses, tot indica que ja podem començar la mi
 <br><br>
 
 ## 4. Migració Automàtica
+
+Gràcies a l'arxiu **migrador.html**, realitzarem les següents accions automàticament:
+* 1. Validarem l'usari per rebre el token
+* 2. Netejarem l'HTML per a que no
+* 3. Crearem cada pàgina nova amb els arxius **.html**, **.css**, **.js** i **.png** / **.jpg** fusionats.
+
+<img width="1010" height="449" alt="validacio-migrador" src="https://github.com/user-attachments/assets/e55d925a-5b12-4c63-a894-d4a012714504" />
+<img width="1010" height="965" alt="migrador" src="https://github.com/user-attachments/assets/95121dff-14c8-4235-b1ad-3146d983a78b" />
 
 <br>
 <br>
