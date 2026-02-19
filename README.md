@@ -22,6 +22,7 @@ Després d'executar **docker-compose up -d**, ja podrem accedir a **WordPress** 
 ## 2. Configuració de WordPress
 
 Dins del panell d'administració de **WordPress**, crearem un usuari amb **Perfil Editor** amb el que ens autenticarem posteriorment:
+
 <img width="809" height="134" alt="usuari-editor" src="https://github.com/user-attachments/assets/a29ea406-015b-45b8-884d-7b28b56cb2c8" />
 <br><br>
 
@@ -58,16 +59,17 @@ Amb aquesta configuració bàsica, ja haurem deixat WordPress llest per rebre pe
 Utilitzarem el codi de l'arxiu **get-posts.html** proporcionat dins del repositori per comprovar que **WordPress** accepta peticions externes:
 
 <img width="751" height="535" alt="get-posts" src="https://github.com/user-attachments/assets/d18cf527-2bde-48ea-aff6-277b71365415" />
+<br><br>
 
 Si la prova anterior ha funcionat correctament, utilitzarem el codi de l'arxiu **login-and-post.html** per obtenir el token de l'usuari **editor1** i crear un post:
 
 <img width="800" height="931" alt="login-and-post" src="https://github.com/user-attachments/assets/33173960-3345-4ba3-af3f-8d21bb9a9b5e" />
-
+<br><br>
 
 **Resolució d'errors:** Aquestes proves poden presentar errors d'autenticació o creació de posts:
 * 1. Revisa que hi ha almenys un post o afegeix un de nou si l'arxiu **get-posts.html** no et mostra res.
 * 2. Si l'autenticació JWT no funciona, revisa que el codi dels arxius conté l'IP de la teva màquina virtual.
-
+<br><br>
 
 Si ambdues proves han resultat exitoses, tot indica que ja podem començar la migració del projecte anterior cap a **WordPress** mitjançant **API REST** i **Fetch API**.
 
