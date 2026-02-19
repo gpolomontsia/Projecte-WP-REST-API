@@ -1,7 +1,6 @@
 # Projecte SPRINT2 - Migració a WordPress
 Aquesta és una guia pràctica per realitzar el procés de migració del projecte SPRINT1 (fet amb codi vanilla) a un WordPress dockeritzat dins d'un Ubuntu Server mitjançant JavaScript i WP REST API.
-<br>
-<br>
+<br><br>
 
 ## Requisits Previs
 Per tal de realitzar aquesta practica correctament, s'han de tenir com a mínim els següents requisits previs:
@@ -15,20 +14,17 @@ Per tal de realitzar aquesta practica correctament, s'han de tenir com a mínim 
 Crearem una carpeta anomenada **projecte_wordpress** i dins d'aquesta l'arxiu **docker-compose.yml**, on afegirem els contenidors per a **WordPress** i **MariaDB** amb els seus respectius volums:
 
 <img width="313" height="523" alt="docker-compose" src="https://github.com/user-attachments/assets/17ba7307-f132-49b1-a239-618d85008f94" />
-<br>
-<br>
+<br><br><br>
 
 Després d'executar **docker-compose up -d**, ja podrem accedir a **WordPress** des del navegador web inserint **192.168.32.169:8080**.
-<br>
-<br>
+<br><br>
 
 ## 2. Configuració de WordPress
 
 Per configurar els arxius de WordPress des d'interfície gràfica, instal·larem el plugin **File Manager** (opcional):
 
 <img width="826" height="321" alt="plugin-file-manager" src="https://github.com/user-attachments/assets/b0166d70-5f56-4204-b153-f4a36b349cb6" />
-<br>
-<br>
+<br><br>
 
 Per realitzar l'autenticació de la **WP REST API** mitjançant el mètode **JWT** (JSON Web Tokens), haurem d'instal·lar el plugin **JWT Authentication for WP REST API**:
 
@@ -59,12 +55,18 @@ Amb aquesta configuració bàsica, ja haurem deixat WordPress llest per rebre pe
 <br>
 
 ## 3. Connexió amb Fetch API
+
+Utilitzarem el codi proporcionat dins de l'arxiu **get-posts.html** per comprovar que **WordPress** accepta peticions externes:
 <img width="751" height="535" alt="get-posts" src="https://github.com/user-attachments/assets/d18cf527-2bde-48ea-aff6-277b71365415" />
 
 <br>
 
+<br>
+<br>
+
 ## 4. El Migració Automàtica
 
+<br>
 <br>
 
 ## 5. Resultat Final
