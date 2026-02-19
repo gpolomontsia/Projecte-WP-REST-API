@@ -1,4 +1,6 @@
-# 🚀 Projecte: Montsià 30 - Migració a WordPress
+# Projecte SPRINT2 - Migració a WordPress
+
+Aquesta és una guia pràctica per realitzar el procés de migració del projecte SPRINT1 (fet amb codi vanilla) a un WordPress dockeritzat dins d'un Ubuntu Server.
 
 
 ## 📋 Requisits Previs de l'Entorn (Servidor)
@@ -15,3 +17,5 @@ L'entorn de WordPress ha d'estar operatiu pel port `8080` i ha de tenir instal·
 * `WP API SwaggerUI` (Per comprovar i testejar els endpoints de l'API).
 * `File Manager` (Per a la gestió d'arxius interna des del panell).
 * `Blank Slate` amb el tema `Hello Elementor` (Per evitar conflictes d'estils amb l'HTML migrat).
+
+
