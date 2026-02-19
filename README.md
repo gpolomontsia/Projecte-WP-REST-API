@@ -97,8 +97,7 @@ Una vegada completada la migració de totes les pàgines, accedirem al plugin **
 
 <img width="550" alt="sustitucio-links" src="https://github.com/user-attachments/assets/c7ab6263-c98d-4ce3-9908-0c64fca61a4e" />
 
-<br>
-<br>
+<br><br>
 
 ## 5. Resultat Final
 
@@ -112,6 +111,8 @@ Exemple pàgina **Inici**:
 Exemple pàgina **Intranet**:
 
 <img width="450" alt="intranet" src="https://github.com/user-attachments/assets/6e0dbbd3-aca2-40ec-9c5b-444ab1e12862" />
+
+<br><br>
 
 ---
 
