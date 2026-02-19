@@ -7,16 +7,17 @@ Per tal de realitzar aquesta practica correctament, s'han de tenir com a mínim 
 * Màquina virtual **Ubuntu Server** (24.04 LTS preferiblement) accessible des de la xarxa (en aquest cas, des de 192.168.32.129).
 * Servei **docker.io** (paquet lleuger de docker) instal·lat amb **docker-compose**.
 * Ganes d'aprendre i calentar-se el cap programant JS sense utilitzar Gemini Pro.
-
 <br>
+
 ## 1. Desplegament amb Docker
+
 Crearem una carpeta anomenada **projecte_wordpress** i dins d'aquesta l'arxiu **docker-compose.yml**, on afegirem els contenidors per a **WordPress** i **MariaDB** amb els seus respectius volums:
 
 <img width="313" height="523" alt="docker-compose" src="https://github.com/user-attachments/assets/17ba7307-f132-49b1-a239-618d85008f94" />
 
 Després d'executar **docker-compose up -d**, ja podrem accedir a **WordPress** des del navegador web inserint **192.168.32.169:8080**.
-
 <br>
+
 ## 2. Configuració de WordPress
 
 Per configurar els arxius de WordPress des d'interfície gràfica, instal·larem el plugin **File Manager** (opcional):
@@ -37,12 +38,15 @@ Dins d'aquest, inserirem les línies de configuració de **JWT** just abans del 
 Amb aquesta configuració bàsica, ja haurem deixat WordPress llest per rebre peticions externes mitjançant **WP REST API**.
 
 <br>
+
 ## 3. Connexió amb Fetch API
 <img width="751" height="535" alt="get-posts" src="https://github.com/user-attachments/assets/d18cf527-2bde-48ea-aff6-277b71365415" />
 
 <br>
+
 ## 4. El Migració Automàtica
 
 <br>
+
 ## 5. Resultat Final
 <img width="1031" height="863" alt="pagina-inici" src="https://github.com/user-attachments/assets/541bf6e8-644c-444f-adf6-b3d216286644" />
