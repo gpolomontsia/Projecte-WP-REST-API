@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8" />
+  <title>Migrador Automàtic - Versió Final</title>
+  <style>
+    body { font-family: sans-serif; max-width: 800px; margin: 20px auto; background: #f0f0f1; padding: 20px; }
+    .caixa { background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; }
+    h1 { color: #0073aa; text-align: center; }
+    label { font-weight: bold; display: block; margin-top: 15px; }
+    input[type="text"], input[type="password"] { width: 100%; padding: 10px; margin-top: 5px; box-sizing: border-box; }
+    input[type="file"] { margin-top: 5px; }
+    button { background: #0073aa; color: white; border: none; padding: 12px 20px; border-radius: 5px; cursor: pointer; width: 100%; margin-top: 20px; font-size: 16px; font-weight: bold; }
+    button:disabled { background: #ccc; cursor: not-allowed; }
+    button:hover:not(:disabled) { background: #005177; }
+    pre { background: #23282d; color: #7ad03a; padding: 15px; overflow-x: auto; border-radius: 4px; white-space: pre-wrap; display: none; }
+    .status { margin-top: 15px; font-weight: bold; }
+    .success { color: green; } .error { color: red; }
+  </style>
+</head>
+<body>
+
+  <h1>🚀 Migrador WP REST API</h1>
+
+  <div class="caixa">
+    <h3>1. Connexió</h3>
+    <input type="text" id="user" placeholder="Usuari WP" value="Gabriel">
+    <input type="password" id="pass" placeholder="Contrasenya WP">
+    <button id="btnLogin">🔐 Connectar</button>
+    <div id="loginResult" class="status"></div>
+  </div>
+
+  <div class="caixa">
+    <h3>2. Pujar Pàgina</h3>
+    
+    <label>Títol de la Pàgina (Ex: Digitalització 1)</label>
+    <input type="text" id="pageTitle">
+
+    <label>Fitxer HTML Original (.html)</label>
+    <input type="file" id="htmlFile" accept=".html">
+    
+    <label>Imatges de la pàgina (Selecciona-les totes)</label>
+    <input type="file" id="imgFiles" accept="image/*" multiple>
+
+    <label>Fitxers CSS (Selecciona tots els necessaris)</label>
+    <input type="file" id="cssFiles" accept=".css" multiple>
+
+    <label>Fitxers JS (Opcional)</label>
+    <input type="file" id="jsFiles" accept=".js" multiple>
+    
+    <button id="btnMigrate" disabled>Iniciar Migració</button>
+    
+    <div id="migrateStatus" class="status"></div>
+    <pre id="log"></pre>
+  </div>
+
+  <script>
+    // --- CONFIGURACIÓ ---
+    // Si la IP canvia, canvia-la només aquí:
+    const WP_BASE = "http://192.168.32.129:8080"; 
+    let token = "";
+
+    // --- FUNCIÓ PER "MINIFICAR" CSS (EL SECRET DE L'ÈXIT) ---
+    function minifyCSS(cssContent) {
+        // Elimina comentaris, salts de línia i espais extra
+        return cssContent
+            .replace(/\/\*[\s\S]*?\*\//g, "") // Treu comentaris
+            .replace(/\n/g, "")               // Treu enters
+            .replace(/\r/g, "")               // Treu retorns de carro
+            .replace(/\s+/g, " ")             // Col·lapsa espais
+            .replace(/\s?([:;{}])\s?/g, "$1") // Treu espais al voltant de símbols
+            .trim();
+    }
+
+    // --- FUNCIÓ PER NETEJAR HTML (TREURE HEAD I BODY) ---
+    function cleanHTML(htmlContent) {
+        // Crea un document temporal per extreure només el contingut del body
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlContent, "text/html");
+        return doc.body ? doc.body.innerHTML : htmlContent;
+    }
+
+    // --- 1. LOGIN ---
+    document.getElementById("btnLogin").onclick = async () => {
+      const user = document.getElementById("user").value;
+      const pass = document.getElementById("pass").value;
+      const resDiv = document.getElementById("loginResult");
+      
+      try {
+        resDiv.innerText = "Connectant...";
+        const r = await fetch(`${WP_BASE}/wp-json/jwt-auth/v1/token`, {
+          method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username: user, password: pass })
+        });
+        const data = await r.json();
+        if (r.ok && data.token) {
+          token = data.token;
+          resDiv.innerHTML = "<span class='success'>✅ Connectat!</span>";
+          document.getElementById("btnMigrate").disabled = false;
+        } else { throw new Error(data.message || "Error desconegut"); }
+      } catch (err) { resDiv.innerHTML = `<span class='error'>❌ Error: ${err.message}</span>`; }
+    };
+
+    // --- 2. PROCÉS DE MIGRACIÓ ---
+    document.getElementById("btnMigrate").onclick = async () => {
+      const log = document.getElementById("log");
+      const status = document.getElementById("migrateStatus");
+      
+      log.style.display = "block";
+      log.innerText = "Iniciant procés...\n";
+      status.innerText = "⏳ Treballant...";
+
+      try {
+        // A. LLEGIR I NETEJAR HTML
+        const htmlFile = document.getElementById("htmlFile").files[0];
+        if (!htmlFile) throw new Error("Has de seleccionar un fitxer HTML!");
+        
+        let rawHtml = await htmlFile.text();
+        let finalHtml = cleanHTML(rawHtml); // Neteja automàtica del <head> i <body>
+        log.innerText += `✅ HTML llegit i netejat (${htmlFile.name})\n`;
+
+        // B. PUJAR IMATGES I REEMPLAÇAR RUTES
+        const imgFiles = document.getElementById("imgFiles").files;
+        if (imgFiles.length > 0) {
+            log.innerText += `🔄 Pujant ${imgFiles.length} imatges...\n`;
+            for (let file of imgFiles) {
+                const formData = new FormData();
+                formData.append("file", file);
+                const r = await fetch(`${WP_BASE}/wp-json/wp/v2/media`, {
+                    method: "POST", headers: { "Authorization": `Bearer ${token}` }, body: formData
+                });
+                if (r.ok) {
+                    const data = await r.json();
+                    // Reemplaçament intel·ligent buscant el nom del fitxer
+                    const regEx = new RegExp(`src=["'][^"']*${file.name}["']`, "gi");
+                    finalHtml = finalHtml.replace(regEx, `src="${data.source_url}"`);
+                    log.innerText += `  -> ${file.name} pujada OK!\n`;
+                } else {
+                    log.innerText += `  -> ❌ Error pujant ${file.name}\n`;
+                }
+            }
+        }
+
+        // C. PROCESSAR I INCRUSTAR CSS
+        const cssFiles = document.getElementById("cssFiles").files;
+        let cssBlock = "";
+        if (cssFiles.length > 0) {
+            log.innerText += `🎨 Processant ${cssFiles.length} fitxers CSS...\n`;
+            for (let file of cssFiles) {
+                let cssText = await file.text();
+                // Minifiquem el CSS per evitar errors de WordPress
+                cssBlock += minifyCSS(cssText) + " "; 
+            }
+            // Afegim un reset bàsic per a WordPress i el CSS minificat
+            finalHtml += `<style>/* Reset WP */ body { margin:0; padding:0; background:none; } .wp-site-blocks { padding: 0 !important; } ${cssBlock}</style>`;
+        }
+
+        // D. INCRUSTAR JS (Tal qual, el JS sol ser més segur)
+        const jsFiles = document.getElementById("jsFiles").files;
+        if (jsFiles.length > 0) {
+            log.innerText += `⚙️ Afegint ${jsFiles.length} scripts JS...\n`;
+            let jsBlock = "<script>";
+            for (let file of jsFiles) {
+                jsBlock += await file.text() + "\n";
+            }
+            jsBlock += "<\/script>";
+            finalHtml += jsBlock;
+        }
+
+        // E. CREAR LA PÀGINA
+        log.innerText += `🚀 Enviant pàgina a WordPress...\n`;
+        const title = document.getElementById("pageTitle").value || htmlFile.name.replace(".html","");
+        
+        const rPage = await fetch(`${WP_BASE}/wp-json/wp/v2/pages`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
+            body: JSON.stringify({ 
+                title: title, 
+                content: finalHtml, 
+                status: "publish",
+                template: "" // Deixem que l'usuari triï la plantilla després
+            })
+        });
+
+        if (rPage.ok) {
+            const data = await rPage.json();
+            status.innerHTML = "<span class='success'>🎉 ÈXIT TOTAL! Pàgina creada.</span>";
+            log.innerText += `\n✅ Pàgina disponible a: ${data.link}\nAra ves a WP i assigna la plantilla 'Elementor Canvas' o 'Blank Slate'.`;
+        } else {
+            throw new Error("Error creant la pàgina a WordPress");
+        }
+
+      } catch (err) {
+        status.innerHTML = "<span class='error'>❌ ERROR FATAL</span>";
+        log.innerText += `\nERROR: ${err.message}`;
+      }
+    };
+  </script>
+</body>
+</html>

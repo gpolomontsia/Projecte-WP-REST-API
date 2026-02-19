@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8" />
+  <title>WP REST - GET Posts</title>
+  
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    pre { background: #f4f4f4; padding: 10px; border: 1px solid #ddd; }
+    button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>GET Posts (Prova de Connexió)</h1>
+  
+  <button id="btn">Carrega posts</button>
+  <pre id="out">Esperant...</pre>
+
+  <script>
+    // Adreça del nostre servidor WordPress. 
+    const WP_BASE = "http://192.168.32.129:8080";
+
+    // Assignem un esdeveniment de clic al botó.
+    document.getElementById("btn").onclick = async () => {
+      
+      const out = document.getElementById("out");
+      out.textContent = "Carregant...";
+      
+      // Utilitzem un bloc try...catch per gestionar possibles errors
+      try {
+        // Fem la petició GET a l'API REST de WordPress per obtenir les entrades (posts).
+        const r = await fetch(`${WP_BASE}/wp-json/wp/v2/posts`);
+        
+        // Comprovem si la resposta HTTP és correcta (status 200-299). Si no ho és, llancem un error.
+        if (!r.ok) throw new Error(`Error HTTP: ${r.status}`);
+        
+        // Convertim la resposta del servidor (que ve en format text) a un objecte JSON usable.
+        const data = await r.json();
+
+        out.textContent = JSON.stringify(data, null, 2);
+        
+      } catch (err) {
+        // Si qualsevol cosa falla, capturem l'error i el mostrem per pantalla i consola.
+        out.textContent = "ERROR: " + err.message;
+        console.error(err);
+      }
+    };
+  </script>
+</body>
+</html>

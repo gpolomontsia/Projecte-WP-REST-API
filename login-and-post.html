@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8" />
+  <title>WP REST - Login & Post</title>
+  
+  <style>
+    body { font-family: sans-serif; max-width: 600px; margin: 20px auto; }
+    input, button { display: block; width: 100%; margin-bottom: 10px; padding: 10px; }
+    pre { background: #eee; padding: 10px; overflow-x: auto; }
+    .success { color: green; }
+    .error { color: red; }
+  </style>
+</head>
+<body>
+  <h1>Test JWT: Login + Crear Post</h1>
+  
+  <h3>1. Aconseguir Token</h3>
+  <input type="text" id="user" placeholder="Usuari (ex: admin)" value="admin">
+  <input type="password" id="pass" placeholder="Contrasenya">
+  <button id="btnLogin">🔐 Login (Obtenir Token)</button>
+  <div id="loginResult"></div> <hr>
+
+  <h3>2. Crear un Post (amb el Token)</h3>
+  <input type="text" id="postTitle" placeholder="Títol del post" value="Hola des de JavaScript!">
+  <button id="btnPost" disabled>📝 Publicar Post</button>
+  <pre id="postResult"></pre>
+
+  <script>
+    // --- VARIABLES GLOBALS ---
+    const WP_BASE = "http://192.168.32.129:8080"; // La IP de la màquina virtual
+    
+    // Creem la variable 'token' i la deixem buida. 
+    let token = "";
+
+    // Validació d'usuari
+    document.getElementById("btnLogin").onclick = async () => {
+      // Agafem el que l'usuari ha escrit a les caixes de text
+      const user = document.getElementById("user").value;
+      const pass = document.getElementById("pass").value;
+      const resDiv = document.getElementById("loginResult");
+
+      try {
+        // Fem una petició de tipus POST (enviar dades confidencials) a l'adreça de login del plugin JWT
+        const r = await fetch(`${WP_BASE}/wp-json/jwt-auth/v1/token`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          // Convertim l'usuari i la contrasenya en un paquet de text (JSON) per enviar-ho de forma segura
+          body: JSON.stringify({ username: user, password: pass })
+        });
+
+        const data = await r.json();
+
+        // Si el servidor ens diu que OK i ens envia el token...
+        if (r.ok && data.token) {
+          token = data.token; // 1. Guardem el token a la nostra variable global!
+          resDiv.innerHTML = `<b class="success">Èxit! Token rebut.</b>`; // 2. Avisem a l'usuari
+          document.getElementById("btnPost").disabled = false; // 3. DESBLOQUEGEM el botó de publicar!
+          console.log("Token:", token); // El mostrem per consola per si volem depurar
+        } else {
+          // Si la contrasenya està malament, el servidor ens envia un missatge que capturem aquí
+          throw new Error(data.message || "Error desconegut");
+        }
+      } catch (err) {
+        resDiv.innerHTML = `<b class="error">Error: ${err.message}</b>`;
+      }
+    };
+
+    // --- 2. FUNCIÓ DE PUBLICAR (Crear un post autèntic a WordPress) ---
+    document.getElementById("btnPost").onclick = async () => {
+      // Agafem el títol que l'usuari ha escrit
+      const title = document.getElementById("postTitle").value;
+      const out = document.getElementById("postResult");
+
+      try {
+        // Fem una petició POST a la ruta de "posts" de WordPress
+        const r = await fetch(`${WP_BASE}/wp-json/wp/v2/posts`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            // AQUESTA ÉS LA LÍNIA MÉS IMPORTANT: Ens identifiquem enviant el token guardat
+            // "Bearer" significa "El portador d'aquest token té permís per entrar".
+            "Authorization": `Bearer ${token}` 
+          },
+          body: JSON.stringify({
+            title: title,
+            content: "Aquest post s'ha creat automàticament via API REST.",
+            status: "publish" // Diem a WordPress que volem publicar-ho directament, sense passar per esborrany
+          })
+        });
+
+        // Rebem la resposta del servidor. Si tot ha anat bé, contindrà les dades del nou post creat.
+        const data = await r.json();
+        out.textContent = JSON.stringify(data, null, 2);
+
+      } catch (err) {
+        out.textContent = "Error: " + err.message;
+      }
+    };
+  </script>
+</body>
+</html>
