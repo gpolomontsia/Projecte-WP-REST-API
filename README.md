@@ -8,6 +8,7 @@ Per tal de realitzar aquesta practica correctament, s'han de tenir com a mínim 
 * Servei **docker.io** (paquet lleuger de docker) instal·lat amb **docker-compose**.
 * Ganes d'aprendre i calentar-se el cap programant JS sense utilitzar Gemini Pro.
 <br>
+![logo_sap](https://github.com/user-attachments/assets/1cba717b-8e6c-43a2-9e78-36e96ac0aede)
 
 ## 1. Desplegament amb Docker
 
